@@ -22,7 +22,7 @@ export default function HeroActions() {
 
       {/* Hire Me */}
       <motion.a
-        href="/contact"
+        href="/hire"
         whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95 }}
         className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-xl text-white font-bold hover:bg-white/20 hover:border-white/40 transition-all"

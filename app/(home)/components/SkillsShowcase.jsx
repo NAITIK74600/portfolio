@@ -3,25 +3,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { HiCode } from 'react-icons/hi';
-import { FaReact, FaNodeJs, FaGithub, FaPython } from 'react-icons/fa';
-import { SiTensorflow, SiScikitlearn, SiPandas, SiNumpy, SiOpencv, SiJupyter, SiTailwindcss, SiJavascript, SiTypescript } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaPython } from 'react-icons/fa';
+import { SiTensorflow, SiScikitlearn, SiPandas, SiNumpy, SiOpencv, SiJupyter, SiTailwindcss, SiTypescript } from 'react-icons/si';
 import { TbBrain } from 'react-icons/tb';
-import Tilt from 'react-parallax-tilt';
-import HolographicCard from '@/components/ui/holographic-card';
 
 const skills = [
-    { name: "Python", icon: <FaPython className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-2 sm:col-span-1 md:col-span-2 row-span-1" },
-    { name: "TensorFlow", icon: <SiTensorflow className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
-    { name: "Scikit-learn", icon: <SiScikitlearn className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
-    { name: "Pandas", icon: <SiPandas className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-2 sm:col-span-1 sm:row-span-2 row-span-1" },
-    { name: "NumPy", icon: <SiNumpy className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-2 sm:col-span-1 md:col-span-2 row-span-1" },
-    { name: "OpenCV", icon: <SiOpencv className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
-    { name: "Jupyter", icon: <SiJupyter className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
-    { name: "Langchain", icon: <TbBrain className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
-    { name: "React", icon: <FaReact className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
-    { name: "TypeScript", icon: <SiTypescript className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-2 sm:col-span-1 md:col-span-2 row-span-1" },
-    { name: "Tailwind", icon: <SiTailwindcss className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
-    { name: "GitHub", icon: <FaGithub className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
+    { name: "Python", icon: <FaPython className="w-6 h-6" />, color: "#3776AB" },
+    { name: "TensorFlow", icon: <SiTensorflow className="w-6 h-6" />, color: "#FF6F00" },
+    { name: "Scikit-learn", icon: <SiScikitlearn className="w-6 h-6" />, color: "#F7931E" },
+    { name: "Pandas", icon: <SiPandas className="w-6 h-6" />, color: "#150458" },
+    { name: "NumPy", icon: <SiNumpy className="w-6 h-6" />, color: "#013243" },
+    { name: "OpenCV", icon: <SiOpencv className="w-6 h-6" />, color: "#5C3EE8" },
+    { name: "Jupyter", icon: <SiJupyter className="w-5 h-5" />, color: "#F37626" },
+    { name: "Langchain", icon: <TbBrain className="w-6 h-6" />, color: "#4A90E2" },
+    { name: "React", icon: <FaReact className="w-6 h-6" />, color: "#61DAFB" },
+    { name: "TypeScript", icon: <SiTypescript className="w-5 h-5" />, color: "#3178C6" },
+    { name: "Tailwind", icon: <SiTailwindcss className="w-6 h-6" />, color: "#06B6D4" },
+    { name: "Node.js", icon: <FaNodeJs className="w-6 h-6" />, color: "#339933" },
 ];
 
 const containerAnimation = {
@@ -29,20 +27,20 @@ const containerAnimation = {
     show: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.08,
-            delayChildren: 0.2
+            staggerChildren: 0.05,
+            delayChildren: 0.15
         }
     }
 };
 
 const itemAnimation = {
-    hidden: { opacity: 0, y: 20, scale: 0.9 },
+    hidden: { opacity: 0, scale: 0.8, y: 20 },
     show: {
         opacity: 1,
-        y: 0,
         scale: 1,
+        y: 0,
         transition: {
-            duration: 0.6,
+            duration: 0.5,
             ease: [0.23, 1, 0.32, 1]
         }
     }
@@ -54,98 +52,83 @@ const SkillsShowcase = () => {
             variants={containerAnimation}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: false, amount: 0.1 }}
-            className="w-full relative py-8"
+            viewport={{ once: true, amount: 0.2 }}
+            className="w-full relative py-12"
             style={{ zIndex: 15 }}
         >
-            <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-6xl relative" style={{ zIndex: 15 }}>
+            <div className="container mx-auto px-4 max-w-5xl relative" style={{ zIndex: 15 }}>
+                {/* Compact Badge */}
                 <motion.div 
                     variants={itemAnimation} 
-                    className="flex items-center gap-2 mb-6 sm:mb-8 justify-center"
+                    className="flex items-center justify-center mb-10"
                 >
-                    <div className="inline-flex items-center space-x-2 bg-white/10 border-[1.8px] border-white/30 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-white backdrop-blur-xl shadow-2xl">
-                        <HiCode className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                        <span className="text-xs sm:text-sm font-semibold text-white">Tech Stack</span>
-                    </div>
+                    <motion.div 
+                        className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 px-5 py-2.5 rounded-full text-white backdrop-blur-xl shadow-xl"
+                        whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.4)" }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <HiCode className="w-5 h-5 text-white" />
+                        <span className="text-sm font-semibold">Tech Stack</span>
+                    </motion.div>
                 </motion.div>
 
+                {/* Compact Grid */}
                 <motion.div
                     variants={containerAnimation}
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 w-full max-w-5xl mx-auto"
-                    style={{ 
-                        gridAutoRows: 'minmax(100px, auto)',
-                        gridAutoFlow: 'row dense'
-                    }}
+                    className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
                 >
                 {skills.map((skill, index) => (
                     <motion.div
                         key={skill.name}
                         variants={itemAnimation}
-                        className={`relative group ${skill.size}`}
+                        whileHover={{ 
+                            scale: 1.1, 
+                            y: -8,
+                            rotateZ: [0, -5, 5, 0],
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
+                        className="relative group cursor-pointer"
                     >
-                        <Tilt
-                            tiltMaxAngleX={15}
-                            tiltMaxAngleY={15}
-                            perspective={1000}
-                            scale={1.05}
-                            transitionSpeed={2000}
-                            gyroscope={true}
-                        >
-                        <HolographicCard className="h-full">
-                        <div
-                            className="
-                                bg-gradient-to-br from-red-950/30 to-red-900/20
-                                border-red-500/40
-                                border-2
-                                p-2.5 sm:p-4 md:p-6
-                                rounded-lg sm:rounded-xl md:rounded-2xl
-                                backdrop-blur-xl
-                                cursor-default
-                                relative overflow-hidden
-                                h-full
-                                w-full
-                                min-h-[90px] sm:min-h-[120px]
-                                flex flex-col items-center justify-center
-                                box-border
-                                shadow-[0_8px_16px_rgba(0,0,0,0.3),0_0_20px_rgba(220,20,60,0.2)]
-                                transition-all duration-300
-                                group-hover:border-red-500/70
-                                group-hover:shadow-[0_8px_16px_rgba(0,0,0,0.3),0_0_30px_rgba(220,20,60,0.4)]
-                                group-hover:bg-gradient-to-br group-hover:from-red-900/40 group-hover:to-red-800/30
-                            "
-                            style={{ height: '100%' }}
-                        >
-                            {/* Shiny overlay effect */}
-                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/20 to-transparent shiny-sweep" />
-                            </div>
+                        <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 aspect-square flex flex-col items-center justify-center gap-2 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden">
+                            {/* Glow effect */}
+                            <motion.div 
+                                className="absolute inset-0 opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500"
+                                style={{ backgroundColor: skill.color }}
+                                animate={{
+                                    scale: [1, 1.2, 1],
+                                }}
+                                transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    repeatType: "reverse"
+                                }}
+                            />
                             
-                            {/* Glossy shine effect */}
-                            <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300">
-                                <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-red-500/40 to-transparent rounded-t-2xl" />
-                            </div>
+                            {/* Icon */}
+                            <motion.div 
+                                className="relative z-10 flex items-center justify-center"
+                                whileHover={{ rotate: [0, -10, 10, 0] }}
+                                transition={{ duration: 0.5 }}
+                                style={{ color: skill.color }}
+                            >
+                                {skill.icon}
+                            </motion.div>
                             
-                            <div className="relative flex flex-col items-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 w-full z-10">
-                                {/* Icon container */}
-                                <div className="relative">
-                                    <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-md sm:rounded-lg md:rounded-xl bg-black border border-red-500/30 flex items-center justify-center shadow-lg transition-all duration-300 group-hover:border-red-500/60 group-hover:shadow-red-500/20 group-hover:shadow-[0_0_15px_rgba(220,20,60,0.3)]">
-                                        <div className="text-white drop-shadow-lg transition-transform duration-300 group-hover:scale-110">
-                                            {skill.icon}
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                {/* Skill name */}
-                                <div className="flex flex-col items-center gap-0.5 sm:gap-1 w-full px-0.5 sm:px-1">
-                                    <span className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-bold text-white text-center tracking-tight transition-all duration-300 group-hover:text-white/90 break-words leading-tight">
-                                        {skill.name}
-                                    </span>
-                                    <div className="w-5 sm:w-6 md:w-8 h-0.5 bg-gradient-to-r from-transparent via-red-500/50 to-transparent rounded-full transition-all duration-300 group-hover:via-red-500/80" />
-                                </div>
-                            </div>
+                            {/* Name */}
+                            <span className="relative z-10 text-[10px] font-semibold text-white/90 text-center leading-tight">
+                                {skill.name}
+                            </span>
+
+                            {/* Hover line */}
+                            <motion.div 
+                                className="absolute bottom-2 w-8 h-0.5 rounded-full"
+                                style={{ backgroundColor: skill.color }}
+                                initial={{ scaleX: 0 }}
+                                whileHover={{ scaleX: 1 }}
+                                transition={{ duration: 0.3 }}
+                            />
                         </div>
-                        </HolographicCard>
-                        </Tilt>
                     </motion.div>
                 ))}
                 </motion.div>
@@ -155,4 +138,3 @@ const SkillsShowcase = () => {
 };
 
 export default SkillsShowcase;
-

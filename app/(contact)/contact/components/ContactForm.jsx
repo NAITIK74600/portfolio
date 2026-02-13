@@ -19,12 +19,29 @@ const ContactForm = ({ onSubmit }) => {
 
   const onSubmitHandler = async (data) => {
     await onSubmit(data);
-    await emailjs.sendForm(
-      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-      formRef.current,
-      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-    );
+    
+    // Try EmailJS if configured, otherwise use mailto
+    if (process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID) {
+      try {
+        await emailjs.sendForm(
+          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+          formRef.current,
+          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+        );
+      } catch (error) {
+        console.error('EmailJS error:', error);
+        // Fallback to mailto
+        const subject = `Contact Form: ${data.name}`;
+        const body = `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`;
+        window.location.href = `mailto:naitikraj74600@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+    } else {
+      // Use mailto if EmailJS not configured
+      const subject = `Contact Form: ${data.name}`;
+      const body = `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`;
+      window.location.href = `mailto:naitikraj74600@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
 
     reset();
   };
@@ -106,6 +123,16 @@ const ContactForm = ({ onSubmit }) => {
       >
         {isSubmitting ? "Sending..." : "Send Message"}
       </Button>
+
+      <p className="text-xs text-center text-muted-foreground mt-4">
+        This will open your email client. Or email me directly at{" "}
+        <a 
+          href="mailto:naitikraj74600@gmail.com" 
+          className="text-blue-400 hover:underline font-medium"
+        >
+          naitikraj74600@gmail.com
+        </a>
+      </p>
     </form>
   );
 };

@@ -19,6 +19,10 @@ import Timeline from '@/components/ui/timeline'
 import Services from '@/components/ui/services'
 import LoadingScreen from '@/components/ui/loading-screen'
 import SmoothScroll from '@/components/ui/smooth-scroll'
+import AnimatedBox from '@/components/ui/animated-box'
+import MagneticButton from '@/components/ui/magnetic-button'
+import CertificatesSection from '@/components/ui/certificate/certificates-section'
+import certificates from '@/data/certificates'
 
 const Home = () => {
   return (
@@ -29,50 +33,56 @@ const Home = () => {
       <SpiderCursor />
       <SpiderManBackground />
       <BackToTop />
+      
       <main className="relative pointer-events-auto" style={{ zIndex: 10 }}>
         {/* Hero Section */}
         <section className="min-h-screen flex flex-col justify-center items-center py-20">
           <HeroSection />
         </section>
 
-        {/* Highlights */}
-        <Highlights />
+        {/* Highlights Section */}
+        <AnimatedBox direction="up" delay={0.1}>
+          <Highlights />
+        </AnimatedBox>
 
-        {/* Services */}
-        <Services />
+        {/* Services Section */}
+        <AnimatedBox direction="up" delay={0.2}>
+          <Services />
+        </AnimatedBox>
 
-        {/* Professional Skills */}
-        <ProfessionalSkills />
+        {/* Professional Skills Section */}
+        <AnimatedBox direction="up" delay={0.1}>
+          <ProfessionalSkills />
+        </AnimatedBox>
 
-        {/* Timeline */}
-        <Timeline />
+        {/* Timeline Section */}
+        <AnimatedBox direction="up" delay={0.1}>
+          <Timeline />
+        </AnimatedBox>
 
         {/* GitHub Projects Section */}
-        <section className="py-20">
-          <GithubProjects />
-        </section>
+        <AnimatedBox direction="up" delay={0.2}>
+          <section className="py-20">
+            <GithubProjects />
+          </section>
+        </AnimatedBox>
+
+        {/* Certifications Section */}
+        <AnimatedBox direction="up" delay={0.1}>
+          <CertificatesSection certificates={certificates} />
+        </AnimatedBox>
       
         {/* Contact Button Section */}
         <section className="py-20 pb-32">
           <div className="container mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex justify-center"
-            >
+            <AnimatedBox direction="up" delay={0.3} className="flex justify-center">
               <Link href="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white text-base font-medium transition-all duration-300 backdrop-blur-sm shadow-2xl"
-                >
+                <MagneticButton className="group inline-flex items-center gap-2 text-lg px-8 py-4">
                   <span>Get In Touch</span>
                   <HiArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-                </motion.button>
+                </MagneticButton>
               </Link>
-            </motion.div>
+            </AnimatedBox>
           </div>
         </section>
       </main>

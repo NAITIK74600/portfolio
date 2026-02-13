@@ -23,43 +23,89 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-20 bg-black/20">
-      <div className="container mx-auto px-6 max-w-7xl">
+    <section className="py-24 relative overflow-hidden">
+      {/* Background gradient effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 pointer-events-none" />
+      
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <motion.h2 
+            className="text-4xl md:text-5xl font-bold text-white mb-4"
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, type: "spring" }}
+          >
             What I Offer
-          </h2>
-          <p className="text-xl text-white/60 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-white/60 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
             Professional services to bring your ideas to life
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, idx) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:bg-white/10 hover:border-white/20 transition-all group"
+              initial={{ opacity: 0, y: 40, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ 
+                delay: idx * 0.15,
+                duration: 0.6,
+                type: "spring",
+                stiffness: 100
+              }}
+              whileHover={{ scale: 1.05, y: -10 }}
+              className="relative group cursor-pointer"
             >
-              <h3 className="text-2xl font-bold text-white mb-3">{service.title}</h3>
-              <p className="text-white/60 mb-6">{service.description}</p>
+              {/* Glow effect */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 blur-2xl transition-all duration-500 -z-10" />
               
-              <ul className="space-y-3">
-                {service.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-3 text-white/80">
-                    <HiCheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-white/30 transition-all duration-300 h-full shadow-lg hover:shadow-2xl">
+                <motion.h3 
+                  className="text-2xl font-bold text-white mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {service.title}
+                </motion.h3>
+                <p className="text-white/70 mb-6 leading-relaxed">{service.description}</p>
+                
+                <ul className="space-y-3">
+                  {service.features.map((feature, featureIdx) => (
+                    <motion.li 
+                      key={feature} 
+                      className="flex items-center gap-3 text-white/80"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.15 + featureIdx * 0.1 }}
+                      whileHover={{ x: 5 }}
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.2, rotate: 360 }}
+                        transition={{ duration: 0.4 }}
+                      >
+                        <HiCheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                      </motion.div>
+                      <span>{feature}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           ))}
         </div>
