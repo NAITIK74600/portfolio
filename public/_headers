@@ -1,0 +1,17 @@
+# PDF files
+/certificates/*.pdf
+  Content-Type: application/pdf
+  Cache-Control: public, max-age=31536000, immutable
+
+# Image files
+/certificates/*.png
+  Content-Type: image/png
+  Cache-Control: public, max-age=31536000, immutable
+
+/certificates/*.jpeg
+  Content-Type: image/jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/certificates/*.jpg
+  Content-Type: image/jpeg
+  Cache-Control: public, max-age=31536000, immutable
