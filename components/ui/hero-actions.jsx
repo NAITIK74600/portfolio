@@ -9,8 +9,8 @@ export default function HeroActions() {
     <div className="flex flex-wrap gap-4 justify-center mt-8">
       {/* Download Resume */}
       <motion.a
-        href="/resume.pdf"
-        download
+        href="/Naitik_Raj_Resume.pdf"
+        download="Naitik_Raj_Resume.pdf"
         whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95 }}
         className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-600 to-red-800 rounded-xl text-white font-bold shadow-lg hover:shadow-red-500/50 transition-all overflow-hidden"
